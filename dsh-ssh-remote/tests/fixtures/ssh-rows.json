@@ -1,0 +1,20 @@
+[
+  {
+    "label": "WSL(Debian)",
+    "why": "只读检查：看内核与发行版",
+    "text": "uname -a",
+    "meta": "工作目录 /root · 超时 30s"
+  },
+  {
+    "label": "192.168.1.11",
+    "why": "部署后确认服务起来了",
+    "text": "systemctl is-active nginx",
+    "meta": "超时 15s"
+  },
+  {
+    "label": "192.168.1.14",
+    "why": "覆盖前先备份配置",
+    "text": "cp -a /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak",
+    "meta": "⚠ 覆盖 · 工作目录 /etc/nginx"
+  }
+]

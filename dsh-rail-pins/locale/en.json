@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Rail Pinned Sessions",
+    "description": "When the sidebar collapses to a 56px rail, pinned sessions fill the empty space below the search icon: glyph tiles, four-state status badges, hover details, and one-click switching."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "png": "C:\\work\\dsh-plugins\\docs\\images\\card-approval.png",
+  "mode": "preview",
+  "cornerRadius": 0,
+  "backdrop": "",
+  "position": "corner",
+  "screen": -1,
+  "screenMargin": 20,
+  "result": {
+    "action": "closed",
+    "contentWidth": 680,
+    "contentHeight": 213,
+    "windowBounds": "3082,847 680x213"
+  },
+  "window": {
+    "Left": 3082,
+    "Top": 847,
+    "Width": 680,
+    "Height": 213
+  },
+  "client": {
+    "Width": 680,
+    "Height": 213
+  },
+  "hasRegion": false,
+  "card": {
+    "left": 0,
+    "top": 0,
+    "width": 680,
+    "height": 213,
+    "viewportWidth": 680,
+    "viewportHeight": 213,
+    "bodyScrollWidth": 680,
+    "bodyScrollHeight": 213
+  },
+  "capture": null,
+  "bytes": 23088,
+  "placement": {
+    "area": {
+      "Left": 1920,
+      "Top": -4,
+      "Width": 1858,
+      "Height": 1080,
+      "Right": 3778,
+      "Bottom": 1076
+    },
+    "scale": 1.0,
+    "requestedMaxHeight": 0,
+    "maxHeight": 669,
+    "width": 680
+  }
+}

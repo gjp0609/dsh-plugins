@@ -1,0 +1,27 @@
+{
+  "eyebrow": "pwsh · 提权审批",
+  "titleHtml": "<span class=\"card__title-path\">C:\\work\\dsh-plugins</span>",
+  "body": [
+    {
+      "kind": "code",
+      "command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' } | Select-Object ProcessId, Name, CreationDate",
+      "lang": "sh",
+      "comment": "查一下本机 node 进程的启动时间，判断宿主是不是真的重启过；只读，不改任何东西。"
+    }
+  ],
+  "buttons": [
+    {
+      "label": "拒绝",
+      "action": "rejected",
+      "kind": "default"
+    },
+    {
+      "label": "允许一次",
+      "action": "allowed-once",
+      "kind": "primary"
+    }
+  ],
+  "armMs": 1000,
+  "closeMs": 600000,
+  "keyboard": "none"
+}

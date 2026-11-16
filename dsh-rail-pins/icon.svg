@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36" role="img" aria-label="折叠栏会话">
+  <!-- 方框里一个字（钉），右下角挂状态角标：对应插件在 rail 里渲染的方块 + 状态点 -->
+  <rect x="3.5" y="3.5" width="25" height="25" rx="8" fill="#f7f8fa" stroke="#1b1c1e" stroke-width="2"/>
+  <text x="16" y="23" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#1b1c1e">钉</text>
+  <circle cx="28.5" cy="28.5" r="5.5" fill="#22c55e" stroke="#f7f8fa" stroke-width="2"/>
+</svg>

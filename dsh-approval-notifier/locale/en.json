@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Approval Notifier",
+    "description": "Handles DSH escalation approvals with a native topmost Windows popup when you are not looking at the browser. Browser cards stay first: the popup only appears after 10 seconds of silence."
+  }
+}

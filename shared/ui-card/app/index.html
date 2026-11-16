@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN" data-phase="measure">
+  <head>
+    <meta charset="utf-8" />
+    <title>DSH 卡片</title>
+  </head>
+  <body>
+    <!--
+      PowerShell 只做一件事：把这段 JSON 里的 __DSH_PAYLOAD__ 换成本次的载荷。
+      页面其余部分（结构、样式、行为）全部由 React 产物负责——单一渲染源。
+    -->
+    <script id="dsh-payload" type="application/json">__DSH_PAYLOAD__</script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

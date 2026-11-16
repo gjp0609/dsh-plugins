@@ -1,0 +1,110 @@
+/* antd 的 reset 负责基础排版；这份文件只剩四件 antd 表达不了的事：
+   两阶段高度契约、代码框右上角按钮的悬停显隐、滚动条、关掉焦点环（这些卡全程用鼠标）。 */
+
+html,
+body,
+#root {
+  margin: 0;
+  background: #fff;
+}
+
+/* antd 的 token 只作用到组件，body 这一层要自己声明。
+   字体是用户定的：整卡「等距更纱黑体 SC」（Chromium 报的英文名是 Sarasa Mono SC）。
+   中文族名必须排第一——GDI+ 只认中文名，写英文名会静默回退。 */
+body {
+  font-family: '等距更纱黑体 SC', 'Sarasa Mono SC', 'Cascadia Mono', Consolas, monospace;
+}
+
+html[data-phase='measure'],
+html[data-phase='measure'] body,
+html[data-phase='measure'] #root {
+  height: auto;
+}
+
+html[data-phase='fill'],
+html[data-phase='fill'] body,
+html[data-phase='fill'] #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 不让焦点环出现：所有可交互元素都是 tabIndex=-1，这里再兜一层。 */
+:focus,
+:focus-visible {
+  outline: none;
+}
+
+/**
+ * 代码框右上角：复制/折叠两个图标按钮悬停才显（B-29 / B-33），位置**固定** 6px/6px。
+ *
+ * 三条对按钮组都必须成立：
+ *   - position: absolute —— 不占布局，不顶开内容，卡片高度与 measure 结果一个像素都不变；
+ *   - pointer-events: none —— 藏起来的时候别吃掉一次点击（这类卡里每一次点击都要算数）；
+ *   - transition —— 出现别硬切，120ms 足够（要求 ≤120ms）。
+ * top/right 写死、不跟任何控件走：上一版靠计数 chip 定位，chip 一变宽按钮就整组平移
+ * （用户真机看到「展开折叠按钮位置会变化」）；计数 chip 已整体删除（D-34），
+ * 按钮在折叠态与展开态同一个位置。
+ * 这里刻意不写任何颜色：底色与字色都来自 antd token（内联），色值不落进 CSS（B-20）。
+ */
+.card-code-tools {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-in-out;
+}
+
+/* 悬停到代码框（正文代码块 / 行内命令框）时按钮组显形；鼠标移到按钮上仍算在框内。 */
+.card-code:hover .card-code-tools {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 滚动条：展开态是双向滚动，必须一眼看出「这里能滚」，所以不用 Chromium 的浮层滚动条
+   （不滚的时候完全看不见）。颜色取自卡片根节点上的 --dsh-scroll-*（App.tsx 里从 antd token 写入），
+   不写裸色值（B-20）。 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dsh-scroll-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dsh-scroll-thumb-hover);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 代码框自己的滚动条更细：折叠态现在也能滚（D-34），6px 的条不抢右上角按钮的视线。
+   它贴在代码框右边框上（0px），因为右侧那 28px 避让在裁剪盒自己的 padding 上（App.tsx 的
+   CODE_PADDING_RIGHT），外层 .card-code 不再有 padding-right——外层的 padding 会把滚动条推到
+   content box 边上，右边空出 28px（2026-10-30 用户真机反馈「离右边框约 27px 空白」）。 */
+.card-code-body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* 折叠态（data-expanded=false）：thumb 平时透明，鼠标进代码框才显形——
+   否则「露一点下一行」旁边常挂一根灰条，提示反而变成噪点。
+   展开态保持常显（B-28 要求一眼看出这里能滚）。 */
+.card-code-body[data-expanded='false']::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.card-code:hover .card-code-body[data-expanded='false']::-webkit-scrollbar-thumb {
+  background: var(--dsh-scroll-thumb);
+}
+
+.card-code:hover .card-code-body[data-expanded='false']::-webkit-scrollbar-thumb:hover {
+  background: var(--dsh-scroll-thumb-hover);
+}

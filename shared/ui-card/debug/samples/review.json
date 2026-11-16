@@ -1,0 +1,39 @@
+{
+  "eyebrow": "验收 · 自己点一遍",
+  "titleHtml": "<span class=\"card__title-path\">C:\\work\\dsh-plugins</span>",
+  "status": "这张卡只给你自己点：不截图、不跑探针、不注入点击",
+  "body": [
+    {
+      "kind": "code",
+      "lang": "sh",
+      "comment": "长命令：只看折叠 / 滚动 / 露一行与复制，别真的执行",
+      "command": "uname -a && df -h / && for i in 1 2 3 4 5 6 7 8 9 10; do printf 'step %s\\n' \"$i\"; done && ls -la /tmp/build /var/log/nginx /etc/systemd/system /home/admin/.ssh /opt/app/releases /srv/data/archive/2026 /usr/local/share/ca-certificates /etc/letsencrypt/live && tar -czf /tmp/backup-$(date +%F).tar.gz /etc/nginx /etc/systemd /opt/app/releases /srv/data/archive && find /var/log -type f -name '*.log' -mtime +7 -print && grep -RIn --include='*.conf' 'ssl_protocols' /etc/nginx | sort | uniq -c | head -20 && ps -eo pid,ppid,pcpu,pmem,etime,cmd --sort=-pcpu | head -15 && ss -lntp | grep -E ':(80|443|8080|8443)' | sort -k4 && journalctl -u nginx --since '7 days ago' --no-pager | tail -50 | grep -Ei 'error|warn|timeout|refused'"
+    },
+    {
+      "kind": "code",
+      "lang": "powershell",
+      "comment": "PowerShell：类型 / 变量 / 操作符 / 关键字加粗、数字与命令同蓝",
+      "command": "param(\n  [string]$Test = 'aa.json',\n  [int]$KeepSeconds = 900\n)\n$p = Join-Path $env:TEMP $Test\nif (-not (Test-Path -LiteralPath $p)) { Get-ChildItem -LiteralPath $p -Filter '*.log' | Select-Object -First 5 }"
+    },
+    {
+      "kind": "code",
+      "lang": "sh",
+      "comment": "shell：for 列表数字、双引号里的变量、管道与重定向",
+      "command": "for i in 1 2 3 4; do printf 'x' \"$i\"; done | tee /tmp/x.log > /dev/null"
+    }
+  ],
+  "rows": [
+    {
+      "label": "192.168.1.11",
+      "why": "行内命令框也要有同一套按钮：复制 / 展开，且默认藏起来",
+      "text": "systemctl status nginx --no-pager -l",
+      "meta": "cwd /root · 超时 30s"
+    }
+  ],
+  "buttons": [
+    {
+      "label": "关掉",
+      "action": "dismiss"
+    }
+  ]
+}

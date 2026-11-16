@@ -1,0 +1,10 @@
+# dsh-ssh-remote 的 bundle patch 层：只向 profile 插入一行。
+#
+# P0 阶段只注册一个探针工具（ssh_probe），并在插件激活时异步跑一次环境探针，
+# 结果写到 dataDir 下的 probe.json（默认 %USERPROFILE%\.dsh\plugin-data\ssh-remote）。
+#
+# 以后要调的参数（hosts/vault/超时等）放 dataDir 下的配置文件，改完即生效，不必重启。
+- insert:
+    - id: ssh-remote
+      name: dsh-ssh-remote
+      config: {}

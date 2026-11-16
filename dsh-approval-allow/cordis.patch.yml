@@ -1,0 +1,14 @@
+# dsh-approval-allow 的 bundle patch 层：只向 profile 插入一行。
+#
+# 这里只放「改了要重启」的键：
+#   enabled  布尔，默认 true；设为 false 则本插件不注册任何监听，等于关掉插件
+#   dataDir  字符串，默认 %USERPROFILE%\.dsh\plugin-data\approval-allow
+#            （allow.json、approvals.jsonl、config-errors.log 的落点；不要建子目录）
+#   debug    布尔，默认 false；为 true 时把插件自身的诊断打到宿主控制台
+#
+# 平时要改的规则不在 patch 里：全部写 <dataDir>/allow.json，顶层规则对所有项目生效，
+# projects.<项目标识> 只对一个项目；保存后下一次审批请求即生效、不必重启。详见 README.md。
+- insert:
+    - id: approval-allow
+      name: dsh-approval-allow
+      config: {}

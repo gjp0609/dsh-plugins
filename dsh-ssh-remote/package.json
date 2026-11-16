@@ -1,0 +1,43 @@
+{
+  "name": "dsh-ssh-remote",
+  "version": "0.1.0",
+  "engines": { "dsh": ">=0.2.2-rc.2" },
+  "private": true,
+  "type": "module",
+  "description": "受控的多主机 SSH 执行与搬运：每条操作先经多选审批卡，密码用 DPAPI 加密存储且不进模型上下文，连接常驻复用。",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.bundle.js",
+    "index.js",
+    "lib",
+    "scripts",
+    "tests",
+    "vendor",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test --test-isolation=none \"tests/*.test.mjs\"",
+    "build": "esbuild index.js --bundle --platform=node --format=esm --target=node20 --outfile=index.bundle.js --external:cpu-features --external:nan --external:*.node --log-level=warning --banner:js=\"import { createRequire as __dshCreateRequire } from 'node:module'; import { fileURLToPath as __dshFileURLToPath } from 'node:url'; import { dirname as __dshDirname } from 'node:path'; const __filename = __dshFileURLToPath(import.meta.url); const __dirname = __dshDirname(__filename); const require = __dshCreateRequire(import.meta.url);\""
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "dependencies": {
+    "ssh2": "^1.17.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

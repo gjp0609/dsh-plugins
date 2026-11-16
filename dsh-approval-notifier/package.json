@@ -1,0 +1,32 @@
+{
+  "name": "dsh-approval-notifier",
+  "version": "0.1.0",
+  "engines": { "dsh": ">=0.2.2-rc.2" },
+  "private": true,
+  "type": "module",
+  "description": "用本机置顶卡片（WebView2，长相与网页端一致）承接 DSH 的提权审批请求：浏览器优先，10 秒无应答才弹窗。",
+  "icon": "./icon.svg",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./locale/en.json": "./locale/en.json",
+    "./locale/zh.json": "./locale/zh.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "scripts",
+    "tests",
+    "vendor",
+    "locale",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

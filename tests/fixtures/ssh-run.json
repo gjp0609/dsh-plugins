@@ -1,0 +1,26 @@
+{
+  "_comment": "R-24 复现载荷：2026-11-12 17:32 真机那张 680×360 的 SSH 执行确认卡（内容只有 ~290）。字段与 dsh-ssh-remote 生成的一致，命令原样抄自卡片。",
+  "eyebrow": "SSH · 执行确认",
+  "titleHtml": "<span class=\"card__title-path\">192.168.1.17:22</span>",
+  "rows": [
+    {
+      "label": "192.168.1.17:22",
+      "why": "核对测试SDK备份清单字段，确保交付的回滚说明与实际备份一致",
+      "text": "/opt/homebrew/bin/docker exec onlyoffice-documentserver python3 -c 'import json,pathlib; p=pathlib.Path(\"/var/lib/onlyoffice/dsh-backups/20261112-insert-vector-preview/manifest.json\"); print(p.read_text())'",
+      "meta": "超时 20s"
+    }
+  ],
+  "buttons": [
+    {
+      "label": "取消",
+      "action": "cancel",
+      "kind": "default"
+    },
+    {
+      "label": "执行",
+      "action": "confirm",
+      "kind": "primary"
+    }
+  ],
+  "armMs": 1000
+}

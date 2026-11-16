@@ -1,0 +1,14 @@
+# dsh-approval-notifier 的 bundle patch 层：只向 profile 插入一行。
+#
+# 这里只放"改了要重启"的键：
+#   enabled  布尔，默认 true；设为 false 则本插件不注册任何监听
+#   dataDir  字符串，默认 %USERPROFILE%\.dsh\plugin-data\approval-notifier（日志与配置文件的落点）
+#   debug    布尔，默认 false；为 true 时把插件自身的写入失败等诊断打到宿主控制台
+#
+# 平时要调的参数（delayMs / armDelayMs / windowCloseAfterMs / renotifyMs /
+# sound / showArguments / shell）改 dataDir 下的 config.json，改完即生效、不必重启。
+# 详见同目录 README.md。
+- insert:
+    - id: approval-notifier
+      name: dsh-approval-notifier
+      config: {}

@@ -1,0 +1,30 @@
+# 本仓库自己的任务状态与临时文件（按 session-state 规范隔离，见 README.md）
+/.session-files/
+
+# 依赖与构建产物
+node_modules/
+dist/
+# 例外：卡片外壳的构建产物**要**入库（运行时零构建，PowerShell 直接读这份 HTML）
+!/shared/ui-card/dist/
+!/shared/ui-card/dist/**
+
+# 出图与量高结果（临时，随时可重生成）
+/out/
+
+# 日志
+*.log
+
+# 测试工作树（git worktree，见 AGENTS.md 环境分离）
+/.dev/
+
+# DSH 创建的工作树（create_worktree 默认落点）
+/.agents/
+
+# WebView2 解包出来的原始载荷（约 57MB，只是取三个 DLL 用；成品在插件自己的 vendor/webview2）
+/vendor/webview2/extracted/
+
+# WebView2 SDK 的下载缓存（插件内联的是解出来的 3 个 DLL，nupkg 只是来源）
+/vendor/webview2/*.nupkg
+
+# pnpm 在工作区根落的本地 store（跨盘时 hardlink 不可用，见 dsh-ssh-remote/README.md）
+.pnpm-store/
